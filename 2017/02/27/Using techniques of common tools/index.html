@@ -1,435 +1,678 @@
-<!DOCTYPE html>
-<html lang=zh>
-<head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    
-    <title>gaopengsheng.blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Using techniques of common tools
-Alfred / Spotlight当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件
+<!doctype html>
 
-鼠标移到文件上，按住command键，Alfred会出现Reveal file in Finder
-直接将搜索到的文件拖拽到指定应用程序上打开">
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Using techniques of common tools
+
+
+
+
+Alfred / Spotlight
+当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件 - 鼠标移到文件上，按住command键，Alfred会出现Reveal file in Finder - 直接将搜索到的文件拖拽到指定应用程序上打开">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gaopengsheng.blog">
 <meta property="og:url" content="http://gaopengsheng.com/2017/02/27/Using techniques of common tools/index.html">
 <meta property="og:site_name" content="gaopengsheng.blog">
 <meta property="og:description" content="Using techniques of common tools
-Alfred / Spotlight当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件
 
-鼠标移到文件上，按住command键，Alfred会出现Reveal file in Finder
-直接将搜索到的文件拖拽到指定应用程序上打开">
+
+
+
+Alfred / Spotlight
+当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件 - 鼠标移到文件上，按住command键，Alfred会出现Reveal file in Finder - 直接将搜索到的文件拖拽到指定应用程序上打开">
 <meta property="og:image" content="http://ol5hpe5hj.bkt.clouddn.com/Photo%2012-02-2017,%2018%2017%2056.jpg">
-<meta property="og:updated_time" content="2017-02-27T14:07:18.000Z">
+<meta property="og:updated_time" content="2017-02-28T07:27:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gaopengsheng.blog">
 <meta name="twitter:description" content="Using techniques of common tools
-Alfred / Spotlight当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件
 
-鼠标移到文件上，按住command键，Alfred会出现Reveal file in Finder
-直接将搜索到的文件拖拽到指定应用程序上打开">
+
+
+
+Alfred / Spotlight
+当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件 - 鼠标移到文件上，按住command键，Alfred会出现Reveal file in Finder - 直接将搜索到的文件拖拽到指定应用程序上打开">
 <meta name="twitter:image" content="http://ol5hpe5hj.bkt.clouddn.com/Photo%2012-02-2017,%2018%2017%2056.jpg">
-    
-
-    
-
-    
-
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
-
-    <link rel="stylesheet" href="/css/style.css">
-
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    
-    
-    
-    
 
 
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gaopengsheng.com/2017/02/27/Using techniques of common tools/"/>
+
+
+
+
+
+  <title>  | gaopengsheng.blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
-        <header id="header">
-    <div id="header-main" class="header-inner">
-        <div class="outer">
-            <a href="/" id="logo">
-                <i class="logo"></i>
-                <span class="site-title">gaopengsheng.blog</span>
-            </a>
-            <nav id="main-nav">
-                
-                    <a class="main-nav-link" href="/">Home</a>
-                
-                    <a class="main-nav-link" href="/archives">Archives</a>
-                
-                    <a class="main-nav-link" href="/categories">Categories</a>
-                
-                    <a class="main-nav-link" href="/tags">Tags</a>
-                
-                    <a class="main-nav-link" href="/about">About</a>
-                
-            </nav>
-            
-                
-                <nav id="sub-nav">
-                    <div class="profile" id="profile-nav">
-                        <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/2017-02-26-12-25-30.png" />
-                            <i class="fa fa-caret-down"></i>
-                        </a>
-                    </div>
-                </nav>
-            
-            <div id="search-form-wrap">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
-        <button type="submit" class="search-form-submit"></button>
-    </form>
-    <div class="ins-search">
-    <div class="ins-search-mask"></div>
-    <div class="ins-search-container">
-        <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
-            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">gaopengsheng.blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
-<script>
-(function (window) {
-    var INSIGHT_CONFIG = {
-        TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(未命名)',
-        },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
-    };
-    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-})(window);
-</script>
-<script src="/js/insight.js"></script>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/02/27/Using techniques of common tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gaopengsheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gaopengsheng.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T20:56:29+08:00">
+                2017-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="using-techniques-of-common-tools">Using techniques of common tools</h1>
+<div class="figure">
+<img src="http://ol5hpe5hj.bkt.clouddn.com/Photo%2012-02-2017,%2018%2017%2056.jpg">
 
 </div>
-        </div>
-    </div>
-    <div id="main-nav-mobile" class="header-sub header-inner">
-        <table class="menu outer">
-            <tr>
-                
-                    <td><a class="main-nav-link" href="/">Home</a></td>
-                
-                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
-                
-                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
-                
-                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
-                
-                    <td><a class="main-nav-link" href="/about">About</a></td>
-                
-                <td>
-                    
-    <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+<h2 id="alfred-spotlight">Alfred / Spotlight</h2>
+<p>当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件 - 鼠标移到文件上，按住<code>command</code>键，<code>Alfred</code>会出现<code>Reveal file in Finder</code> - 直接将搜索到的文件拖拽到指定应用程序上打开</p>
+
+      
     </div>
 
-                </td>
-            </tr>
-        </table>
-    </div>
-</header>
+    <div>
+      
+        
 
-        <div class="outer">
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-                
+          </div>
 
-<aside id="profile">
-    <div class="inner profile-inner">
-        <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/2017-02-26-12-25-30.png" />
-            <h2 id="name">gaopensheng</h2>
-            <h3 id="title">Over shoes and over boots.</h3>
-            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
-            <a id="follow" target="_blank" href="https://github.com/gpszzzc">关注我</a>
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/28/CATransform3D/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
         </div>
-        <div class="article-info profile-block">
-            <div class="article-info-block">
-                1
-                <span>文章</span>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="gaopengsheng" />
+          <p class="site-author-name" itemprop="name">gaopengsheng</p>
+           
+              <p class="site-description motion-element" itemprop="description">Over shoes over boots.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
             </div>
-            <div class="article-info-block">
-                0
-                <span>标签</span>
-            </div>
-        </div>
+          
+
+          
+
+          
+
+        </nav>
+
         
-        <div class="profile-block social-links">
-            <table>
-                <tr>
-                    
-                    
-                    <td>
-                        <a href="https://github.com/gpszzzc" target="_blank" title="github" class=tooltip>
-                            <i class="fa fa-github"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="https://" target="_blank" title="weibo" class=tooltip>
-                            <i class="fa fa-weibo"></i>
-                        </a>
-                    </td>
-                    
-                    <td>
-                        <a href="https://" target="_blank" title="weixin" class=tooltip>
-                            <i class="fa fa-weixin"></i>
-                        </a>
-                    </td>
-                    
-                </tr>
-            </table>
+
+        <div class="links-of-author motion-element">
+          
         </div>
+
         
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#using-techniques-of-common-tools"><span class="nav-number">1.</span> <span class="nav-text">Using techniques of common tools</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#alfred-spotlight"><span class="nav-number">1.1.</span> <span class="nav-text">Alfred / Spotlight</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
     </div>
-</aside>
+  </aside>
 
-            
-            <section id="main"><article id="post-Using techniques of common tools" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            
-            <!--添加的TOC代码-->
-<div id="toc" class="toc-article">
-    <strong class="toc-title"> </strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Using-techniques-of-common-tools"><span class="toc-number">1.</span> <span class="toc-text">Using techniques of common tools</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Alfred-Spotlight"><span class="toc-number">1.1.</span> <span class="toc-text">Alfred / Spotlight</span></a></li></ol></li></ol>
-</div>
-            <h1 id="Using-techniques-of-common-tools"><a href="#Using-techniques-of-common-tools" class="headerlink" title="Using techniques of common tools"></a>Using techniques of common tools</h1><p><img src="http://ol5hpe5hj.bkt.clouddn.com/Photo%2012-02-2017,%2018%2017%2056.jpg" alt=""></p>
-<h2 id="Alfred-Spotlight"><a href="#Alfred-Spotlight" class="headerlink" title="Alfred / Spotlight"></a>Alfred / Spotlight</h2><p>当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件</p>
-<ul>
-<li>鼠标移到文件上，按住<code>command</code>键，<code>Alfred</code>会出现<code>Reveal file in Finder</code></li>
-<li>直接将搜索到的文件拖拽到指定应用程序上打开</li>
-</ul>
 
         
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
+      </div>
+    </main>
 
-    <div class="jiathis_style">
-    <span class="jiathis_txt">分享到：</span>
-    <a class="jiathis_button_qzone">QQ空间</a>
-    <a class="jiathis_button_tsina">新浪微博</a>
-    <a class="jiathis_button_tqq">腾讯微博</a>
-    <a class="jiathis_button_weixin">微信</a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-    <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<style>
-    .jiathis_style div:first-child:not(.jiadiv_01) {
-        width: auto !important;
-        border: none !important;
-    }
-    .jiathis_style .jiadiv_01 {
-        margin: 10px 0;
-        border-radius: 4px;
-        border: #e1e1e1 solid 1px;
-    }
-    .jiathis_style .jiadiv_01 div:first-child {
-        display: none;
-    }
-    .jiathis_style .jiadiv_02 {
-        padding: 7px 0 !important;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle {
-        width: 85px;
-        border: none;
-        height: auto;
-        margin: 3px 10px;
-        padding: 6px 10px;
-        border-radius: 4px;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:hover {
-        border: none;
-    }
-    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
-        margin-left: 0;
-    }
-    .jiathis_style .jtico:hover {
-        opacity: 1;
-    }
-    .jiathis_style .ckepopBottom,
-    .jiathis_style .centerBottom {
-        width: auto !important;
-        padding: 5px;
-        background: #f7f7f7;
-    }
-</style>
-
-
-
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gaopengsheng</span>
 </div>
 
-            
-    
-        <a href="http://gaopengsheng.com/2017/02/27/Using techniques of common tools/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://gaopengsheng.com/2017/02/27/Using techniques of common tools/">评论</a>
-    
 
-        </footer>
-    </div>
-    
-        
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
 
-    
-</article>
-
-
-    
-    <section id="comments">
-    
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
-    
-    </section>
-
-</section>
-            
-                <aside id="sidebar">
-   
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">最新文章</h3>
-        <div class="widget">
-            <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2017/02/27/Using techniques of common tools/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2017/02/27/Using techniques of common tools/" class="title"></a></p>
-                            <p class="item-date"><time datetime="2017-02-27T12:56:29.000Z" itemprop="datePublished">2017-02-27</time></p>
-                        </div>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
-
-    
-        
-    
-        
-    <div class="widget-wrap">
-        <h3 class="widget-title">归档</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li></ul>
-        </div>
-    </div>
-
-    
-        
-    
-        
-    
-        
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">链接</h3>
-        <div class="widget">
-            <ul>
-                
-                    <li>
-                        <a href="http://hexo.io">Hexo</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </div>
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
 
 
+        
+
+        
+      </div>
+    </footer>
+
     
-    <div id="toTop" class="fa fa-angle-up"></div>
-</aside>
-            
-        </div>
-        <footer id="footer">
-    <div class="outer">
-        <div id="footer-info" class="inner">
-            &copy; 2017 gaopengsheng<br>
-            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
-        </div>
-    </div>
-</footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
         
+      </div>
     
-    <script>
-    var disqus_config = function () {
-        
-            this.page.url = 'http://gaopengsheng.com/2017/02/27/Using techniques of common tools/';
-        
-        this.page.identifier = 'Using techniques of common tools';
-    };
-    (function() { 
-        var d = document, s = d.createElement('script');  
-        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
 
 
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
 
 
 
-<!-- Custom Scripts -->
-<script src="/js/main.js"></script>
 
-    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
 </body>
 </html>

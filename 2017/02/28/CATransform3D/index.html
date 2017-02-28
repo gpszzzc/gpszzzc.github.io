@@ -87,15 +87,33 @@
 
 
 
-<meta name="description" content="Over shoes over boots.">
-<meta property="og:type" content="website">
+<meta name="description" content="CATransform3D
+
+12345678&amp;gt; struct CATransform3D&amp;#123;  CGFloat m11, m12, m13, m14;  CGFloat m21, m22, m23, m24;  CGFloat m31, m32, m33, m34;  CGFloat m41, m42, m43, m44;&amp;#125;;&amp;gt;
+
+
+图层的两个属性指定了变换矩阵:">
+<meta property="og:type" content="article">
 <meta property="og:title" content="gaopengsheng.blog">
-<meta property="og:url" content="http://gaopengsheng.com/index.html">
+<meta property="og:url" content="http://gaopengsheng.com/2017/02/28/CATransform3D/index.html">
 <meta property="og:site_name" content="gaopengsheng.blog">
-<meta property="og:description" content="Over shoes over boots.">
+<meta property="og:description" content="CATransform3D
+
+12345678&amp;gt; struct CATransform3D&amp;#123;  CGFloat m11, m12, m13, m14;  CGFloat m21, m22, m23, m24;  CGFloat m31, m32, m33, m34;  CGFloat m41, m42, m43, m44;&amp;#125;;&amp;gt;
+
+
+图层的两个属性指定了变换矩阵:">
+<meta property="og:image" content="http://oeytm4g23.bkt.clouddn.com/4034970a304e251fe854ebeca786c9177f3e5306.jpg">
+<meta property="og:updated_time" content="2017-02-28T04:09:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gaopengsheng.blog">
-<meta name="twitter:description" content="Over shoes over boots.">
+<meta name="twitter:description" content="CATransform3D
+
+12345678&amp;gt; struct CATransform3D&amp;#123;  CGFloat m11, m12, m13, m14;  CGFloat m21, m22, m23, m24;  CGFloat m31, m32, m33, m34;  CGFloat m41, m42, m43, m44;&amp;#125;;&amp;gt;
+
+
+图层的两个属性指定了变换矩阵:">
+<meta name="twitter:image" content="http://oeytm4g23.bkt.clouddn.com/4034970a304e251fe854ebeca786c9177f3e5306.jpg">
 
 
 
@@ -123,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://gaopengsheng.com/"/>
+  <link rel="canonical" href="http://gaopengsheng.com/2017/02/28/CATransform3D/"/>
 
 
 
 
 
-  <title> gaopengsheng.blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>  | gaopengsheng.blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,9 +172,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,9 +255,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -272,9 +288,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/28/CATransform3D/" itemprop="url">
-                  未命名
-                </a>
               
             
           </h1>
@@ -325,9 +338,7 @@
       
 
       
-        
-          
-            <h3 id="catransform3d">CATransform3D</h3>
+        <h3 id="catransform3d">CATransform3D</h3>
 <blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; struct CATransform3D</div><div class="line">&#123;</div><div class="line">  CGFloat m11, m12, m13, m14;</div><div class="line">  CGFloat m21, m22, m23, m24;</div><div class="line">  CGFloat m31, m32, m33, m34;</div><div class="line">  CGFloat m41, m42, m43, m44;</div><div class="line">&#125;;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
 </blockquote>
@@ -350,16 +361,20 @@
 <h4 id="cgtransform3d对图层的影响">CGTransform3D对图层的影响</h4>
 <p>在三个坐标轴上的坐标变换表现为缩放,所以<code>m11,m22,m33</code> 控制三个坐标轴方向上的缩放 <code>m12,m21</code> 控制切变,<code>m12</code>y 切变 <code>m21</code> x切变 <code>m13,m31</code> 控制旋转 <code>m41,m42,m43,m44</code> 控制平移 <code>m11==m22</code>时: 若<code>m33&gt;1</code>，图形整体缩小 若<code>0&lt;m33&lt;1</code>，图形整体放大 若<code>m33&lt;0,</code>发生关于原点的对称等比变换。 当<code>m12 = m21</code>的时候就是旋转效果 <code>m34</code>透视效果<code>-1/观测者的距离(500-1000)</code> 先修改<code>transform的m34属性</code>,再旋转</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -368,145 +383,38 @@
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/02/27/Using techniques of common tools/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="gaopengsheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gaopengsheng.blog">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/02/27/Using techniques of common tools/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2017/02/27/Using techniques of common tools/" itemprop="url">
-                  未命名
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-27T20:56:29+08:00">
-                2017-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="using-techniques-of-common-tools">Using techniques of common tools</h1>
-<div class="figure">
-<img src="http://ol5hpe5hj.bkt.clouddn.com/Photo%2012-02-2017,%2018%2017%2056.jpg">
-
-</div>
-<h2 id="alfred-spotlight">Alfred / Spotlight</h2>
-<p>当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件 - 鼠标移到文件上，按住<code>command</code>键，<code>Alfred</code>会出现<code>Reveal file in Finder</code> - 直接将搜索到的文件拖拽到指定应用程序上打开</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
           
           </div>
@@ -514,6 +422,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -533,8 +445,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -578,6 +499,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#catransform3d"><span class="nav-number">1.</span> <span class="nav-text">CATransform3D</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵知识点补充-切变"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵知识点补充 — 切变</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cgtransform3d对图层的影响"><span class="nav-number">1.2.</span> <span class="nav-text">CGTransform3D对图层的影响</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -690,11 +627,15 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -733,26 +674,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
