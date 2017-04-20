@@ -87,27 +87,19 @@
 
 
 
-<meta name="description" content="CATransform3D
-1234567 struct CATransform3D&amp;#123;  CGFloat m11, m12, m13, m14;  CGFloat m21, m22, m23, m24;  CGFloat m31, m32, m33, m34;  CGFloat m41, m42, m43, m44;&amp;#125;;
-
-图层的两个属性指定了变换矩阵: transform和s">
+<meta name="description" content="crash log
+查看.dSYM文件的UUID是否和崩溃日志中的一致 dwarfdump –uuid dSYM文件的路径 e.g.: dwarfdump –uuid /Users/gaopengsheng/Library/Developer/Xcode/Archives/智慧鸡蛋 2017-3-20 上午9.29.xcarchive/dSYMs/智慧鸡蛋.app.dSYM UUID:每一个可执行">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CATransform3D背后">
-<meta property="og:url" content="http://gaopengsheng.com/2017/03/01/CATransform3D/index.html">
+<meta property="og:title" content="crash log symbolicate">
+<meta property="og:url" content="http://gaopengsheng.com/2017/03/01/crash log/index.html">
 <meta property="og:site_name" content="gaopengsheng.blog">
-<meta property="og:description" content="CATransform3D
-1234567 struct CATransform3D&amp;#123;  CGFloat m11, m12, m13, m14;  CGFloat m21, m22, m23, m24;  CGFloat m31, m32, m33, m34;  CGFloat m41, m42, m43, m44;&amp;#125;;
-
-图层的两个属性指定了变换矩阵: transform和s">
-<meta property="og:image" content="http://ol5hpe5hj.bkt.clouddn.com/%E5%9B%BE1_%E5%88%87%E5%8F%98%E7%9F%A9%E9%98%B5.001.jpeg">
-<meta property="og:updated_time" content="2017-03-02T09:11:38.000Z">
+<meta property="og:description" content="crash log
+查看.dSYM文件的UUID是否和崩溃日志中的一致 dwarfdump –uuid dSYM文件的路径 e.g.: dwarfdump –uuid /Users/gaopengsheng/Library/Developer/Xcode/Archives/智慧鸡蛋 2017-3-20 上午9.29.xcarchive/dSYMs/智慧鸡蛋.app.dSYM UUID:每一个可执行">
+<meta property="og:updated_time" content="2017-04-20T03:38:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CATransform3D背后">
-<meta name="twitter:description" content="CATransform3D
-1234567 struct CATransform3D&amp;#123;  CGFloat m11, m12, m13, m14;  CGFloat m21, m22, m23, m24;  CGFloat m31, m32, m33, m34;  CGFloat m41, m42, m43, m44;&amp;#125;;
-
-图层的两个属性指定了变换矩阵: transform和s">
-<meta name="twitter:image" content="http://ol5hpe5hj.bkt.clouddn.com/%E5%9B%BE1_%E5%88%87%E5%8F%98%E7%9F%A9%E9%98%B5.001.jpeg">
+<meta name="twitter:title" content="crash log symbolicate">
+<meta name="twitter:description" content="crash log
+查看.dSYM文件的UUID是否和崩溃日志中的一致 dwarfdump –uuid dSYM文件的路径 e.g.: dwarfdump –uuid /Users/gaopengsheng/Library/Developer/Xcode/Archives/智慧鸡蛋 2017-3-20 上午9.29.xcarchive/dSYMs/智慧鸡蛋.app.dSYM UUID:每一个可执行">
 
 
 
@@ -135,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://gaopengsheng.com/2017/03/01/CATransform3D/"/>
+  <link rel="canonical" href="http://gaopengsheng.com/2017/03/01/crash log/"/>
 
 
 
 
 
-  <title> CATransform3D背后 | gaopengsheng.blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> crash log symbolicate | gaopengsheng.blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +262,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/03/01/CATransform3D/">
+    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/03/01/crash log/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="gaopengsheng">
@@ -291,7 +283,7 @@
             
             
               
-                CATransform3D背后
+                crash log symbolicate
               
             
           </h1>
@@ -342,78 +334,32 @@
       
 
       
-        <h1 id="catransform3d">CATransform3D</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> struct CATransform3D</div><div class="line">&#123;</div><div class="line">  CGFloat m11, m12, m13, m14;</div><div class="line">  CGFloat m21, m22, m23, m24;</div><div class="line">  CGFloat m31, m32, m33, m34;</div><div class="line">  CGFloat m41, m42, m43, m44;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>图层的两个属性指定了变换矩阵: <code>transform</code>和<code>sublayer Transform</code><br> <code>transform</code>:是结合<code>anchorPoint</code>的位置来对图层和图层上的子图层进行变化<br> <code>sublayer Transform</code>:是结合<code>anchorPoint</code>的位置来对图层的子图层进行变化,不包括本身.</p>
-</blockquote>
-<h2 id="矩阵知识点补充-切变">矩阵知识点补充 — 切变</h2>
-<div class="figure">
-<img src="http://ol5hpe5hj.bkt.clouddn.com/%E5%9B%BE1_%E5%88%87%E5%8F%98%E7%9F%A9%E9%98%B5.001.jpeg" alt="切变矩阵图解">
-<p class="caption">切变矩阵图解</p>
-</div>
-<blockquote>
-<p>以原点为起始点,设矩形的四个顶点分别为OABC,取特殊点B，坐标(a,b),将B点坐标的迁移转化为矩阵计算:</p>
-<p><span class="math inline">\(\big[\begin{smallmatrix} a+m \\ b\end{smallmatrix} \big]\)</span> = <span class="math inline">\(\big[ \begin{smallmatrix} 1 &amp; m/b \\ 0 &amp; 1 \end{smallmatrix} \bigr]\)</span><span class="math inline">\(\big[\begin{smallmatrix} a \\ b\end{smallmatrix} \big]\)</span></p>
-</blockquote>
+        <h1 id="crash-log">crash log</h1>
+<p>查看<code>.dSYM</code>文件的<code>UUID</code>是否和崩溃日志中的一致 dwarfdump –uuid dSYM文件的路径 e.g.: dwarfdump –uuid /Users/gaopengsheng/Library/Developer/Xcode/Archives/智慧鸡蛋 2017-3-20 上午9.29.xcarchive/dSYMs/智慧鸡蛋.app.dSYM UUID:每一个可执行程序都有一个build UUID来唯一标识</p>
+<h2 id="使用symbolicatecrash工具符号化崩溃日志">使用symbolicatecrash工具符号化崩溃日志</h2>
+<h3 id="在桌面创建crash文件夹">1. 在桌面创建crash文件夹</h3>
+<h3 id="所需文件">2. 所需文件</h3>
+<p>Xcode -&gt; Window -&gt; Organizer -&gt; Archives 找到上架的包(右键Show in Finder) -&gt; .xcarchive（右键显示包内容）</p>
 <ul>
-<li>矩阵<span class="math inline">\(\big[\begin{smallmatrix}1 &amp; k \\ 0 &amp; 1 \end{smallmatrix}\big]\)</span>把平面上的点P(x , y)沿 x 轴方向平移 | ky | 个单位</li>
-<li>矩阵<span class="math inline">\(\big[\begin{smallmatrix}1 &amp; 0 \\ k &amp; 1 \end{smallmatrix}\big]\)</span>把平面上的点P(x , y)沿 y 轴方向平移 | ky | 个单位</li>
+<li><code>.app</code>: Products -&gt; Applications</li>
+<li><code>.crash</code>: Apple的拒绝上架邮件中的txt文件直接更改拓展名为.crash</li>
+<li><code>.dSYM</code>: dSYMs</li>
+<li><code>symbolicatecrash</code>:
+<ul>
+<li>打开终端输入命令:<code>find /Applications/Xcode.app -name symbolicatecrash -type f</code></li>
+<li>终端输出:<code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/./symbolicatecrash</code></li>
+<li>将symbolicate拷贝到crash文件夹中 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash /Users/gaopengsheng/Desktop/crash</div></pre></td></tr></table></figure></li>
 </ul>
-<p>一般地,对图中任意一点 (x , y),纵坐标保持不变,横坐标依纵坐标的比例增加, (x , y) –&gt; (x + ky, y) 即,<span class="math inline">\(\big[\begin{smallmatrix} x\\y\end{smallmatrix}\big]\)</span>–&gt;<span class="math inline">\(\big[\begin{smallmatrix} x^\prime\\y^\prime\end{smallmatrix}\big]\)</span> = <span class="math inline">\(\big[\begin{smallmatrix} a+m \\ b\end{smallmatrix} \big]\)</span>,所以<span class="math display">\[M = 
- \left[
- \begin{matrix}
-   1 &amp; k  \\
-  0 &amp; 1  \\
-  \end{matrix}
-  \right]
-为切变矩阵或切变变换矩阵\]</span> 象由矩阵<span class="math inline">\(\big[\begin{smallmatrix} 1 &amp; k \\0 &amp; 1 \end{smallmatrix}\big]\)</span>或者<span class="math inline">\(\big[\begin{smallmatrix} 1 &amp; 0 \\k &amp; 1 \end{smallmatrix}\big]\)</span>确定的变换通常叫做切变变换,对应的矩阵叫做切变变换矩阵.</p>
-<h2 id="矩阵知识点补充-齐次坐标">矩阵知识点补充 — 齐次坐标</h2>
-<p>首先我们要搞明白,为什么三维的坐标系中的图层,需要用四维矩阵来计算图层的变化,这里引入齐次坐标概念.</p>
-<blockquote>
-<p>齐次坐标就是将一个原本是n维的向量用一个n+1维向量来表示。 <a href="https://www.zhihu.com/question/36296104/answer/83199096" target="_blank" rel="external">知乎中陈嘉栋对 “表示三维坐标为什么要建立4*4矩阵?&quot; 的回答</a></p>
-</blockquote>
-<p>最终的结论:</p>
-<blockquote>
-<p>引入齐次坐标是为了结局3*3矩阵无法表示三维空间模型的平移操作,<span class="math inline">\(\Delta x\)</span>,<span class="math inline">\(\Delta y\)</span>,<span class="math inline">\(\Delta z\)</span>分别是 x, y, z轴方向上的平移量</p>
-</blockquote>
-<p><span class="math inline">\(\left [\begin{smallmatrix} x\prime\  \\ y\prime\\z\prime\\1\end{smallmatrix} \right]\)</span> = <span class="math inline">\(\left[ \begin{smallmatrix} 1 &amp; 0 &amp; 0 &amp; \Delta x\ \\ 0 &amp; 1 &amp; 0 &amp; \Delta y\ \\0 &amp; 0 &amp; 1 &amp; \Delta z\ \\0 &amp; 0 &amp; 0 &amp; 1\\ \end{smallmatrix} \right]\)</span><span class="math inline">\(\left [ \begin{smallmatrix} x \\ y \\ z \\1 \\ \end{smallmatrix} \right]\)</span></p>
-<p>等号左侧为转换后的坐标,等号右侧为原始坐标</p>
-<h2 id="cgtransform3d对图层的影响">CGTransform3D对图层的影响</h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center">m</th>
-<th align="center">效果</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><code>m11,m22,m33</code></td>
-<td align="center">三个坐标轴方向上的缩放</td>
-</tr>
-<tr class="even">
-<td align="center"><code>m12,m21</code> </td>
-<td align="center">控制切变,<code>m12</code>y 切变 <code>m21</code> x切变</td>
-</tr>
-<tr class="odd">
-<td align="center"><code>m13,m31</code></td>
-<td align="center">控制旋转</td>
-</tr>
-<tr class="even">
-<td align="center"><code>m41,m42,m43,m44</code></td>
-<td align="center">控制平移</td>
-</tr>
-<tr class="odd">
-<td align="center"><code>m33</code></td>
-<td align="center">若<code>m33&gt;1</code>，图形整体缩小<br>若<code>0&lt;m33&lt;1</code>，图形整体放大<br>若<code>m33&lt;0</code>，发生关于原点对称的等比变换</td>
-</tr>
-<tr class="even">
-<td align="center"><code>m34</code></td>
-<td align="center">透视效果<code>-1/观测者的距离(500-1000)</code>如果要求是透视加旋转，先修改<code>transform的m34属性</code>,再旋转</td>
-</tr>
-</tbody>
-</table>
+<h3 id="将上述所有文件都拷贝到crash文件中">3. 将上述所有文件都拷贝到crash文件中</h3>
+<h3 id="执行symbolicatecrash">4. 执行symbolicatecrash</h3>
+<ul>
+<li>cd 到crash目录</li>
+<li>执行命令<code>./symbolicatecrash .crash文件路径地址 .dSYM文件的路径地址 &gt; 你希望的符号化的crash文件名.crash</code> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e.g.: ./symbolicatecrash /Users/angelseahappiness/Desktop/crash/Control_2014-01-13-111838_Lynns-iPad3.crash /Users/angel/Desktop/crash/Control.app.dSYM &gt; Control_symbol.crash</div></pre></td></tr></table></figure></li>
+</ul></li>
+<li>如果出现<code>Error: &quot;DEVELOPER_DIR&quot; is not defined at ./symbolicatecrash line 60.</code>输入命令<code>export DEVELOPER_DIR=&quot;/Applications/XCode.app/Contents/Developer&quot;</code></li>
+<li><p>继续上上次的命令（可以按两下方向上键，出现上上次执行的命令，然后回车） <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e.g.:./symbolicatecrash /Users/angelseahappiness/Desktop/crash/Control_2014-01-13-111838_Lynns-iPad3.crash /Users/angel/Desktop/crash/Control.app.dSYM &gt; Control_symbol.crash</div></pre></td></tr></table></figure></p></li>
+<li><p>crash文件夹中出现了新的crash文件，即为符号化后的crash文件</p></li>
+</ul>
 
       
     </div>
@@ -450,18 +396,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/01/crash log/" rel="next" title="crash log symbolicate">
-                <i class="fa fa-chevron-left"></i> crash log symbolicate
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/01/Using techniques of common tools/" rel="prev" title="一些小Tips（持续更新）">
-                一些小Tips（持续更新） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/01/CATransform3D/" rel="prev" title="CATransform3D背后">
+                CATransform3D背后 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -580,7 +522,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#catransform3d"><span class="nav-number">1.</span> <span class="nav-text">CATransform3D</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵知识点补充-切变"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵知识点补充 — 切变</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵知识点补充-齐次坐标"><span class="nav-number">1.2.</span> <span class="nav-text">矩阵知识点补充 — 齐次坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cgtransform3d对图层的影响"><span class="nav-number">1.3.</span> <span class="nav-text">CGTransform3D对图层的影响</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#crash-log"><span class="nav-number">1.</span> <span class="nav-text">crash log</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用symbolicatecrash工具符号化崩溃日志"><span class="nav-number">1.1.</span> <span class="nav-text">使用symbolicatecrash工具符号化崩溃日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在桌面创建crash文件夹"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 在桌面创建crash文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所需文件"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 所需文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将上述所有文件都拷贝到crash文件中"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 将上述所有文件都拷贝到crash文件中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行symbolicatecrash"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 执行symbolicatecrash</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
