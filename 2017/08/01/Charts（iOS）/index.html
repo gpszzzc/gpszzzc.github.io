@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -87,15 +87,57 @@
 
 
 
-<meta name="description" content="Over shoes,over boots.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="gaopengsheng.blog">
-<meta property="og:url" content="http://gaopengsheng.com/index.html">
+<meta name="description" content="Charts（iOS）
+
+官方的Demo已经可以满足绝大部分需求啦，但是在面对一些特殊设计的时候，难免要去修改框架内部的代码，下面是几处小小的修改供大家参考，文末附Demo。
+
+
+
+Charts效果图
+
+1. BalloonMarker
+
+涉及类：BalloonMarker.swift 这个类来自官方Demo，不出意外你一定会修改它，也可以说这个类本身就是做为范本供大家修改的。
+
+导入
+我的项目是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Charts（iOS）样式小改">
+<meta property="og:url" content="http://gaopengsheng.com/2017/08/01/Charts（iOS）/index.html">
 <meta property="og:site_name" content="gaopengsheng.blog">
-<meta property="og:description" content="Over shoes,over boots.">
+<meta property="og:description" content="Charts（iOS）
+
+官方的Demo已经可以满足绝大部分需求啦，但是在面对一些特殊设计的时候，难免要去修改框架内部的代码，下面是几处小小的修改供大家参考，文末附Demo。
+
+
+
+Charts效果图
+
+1. BalloonMarker
+
+涉及类：BalloonMarker.swift 这个类来自官方Demo，不出意外你一定会修改它，也可以说这个类本身就是做为范本供大家修改的。
+
+导入
+我的项目是">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/7139338-a4b462494795ba0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-05T07:54:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gaopengsheng.blog">
-<meta name="twitter:description" content="Over shoes,over boots.">
+<meta name="twitter:title" content="Charts（iOS）样式小改">
+<meta name="twitter:description" content="Charts（iOS）
+
+官方的Demo已经可以满足绝大部分需求啦，但是在面对一些特殊设计的时候，难免要去修改框架内部的代码，下面是几处小小的修改供大家参考，文末附Demo。
+
+
+
+Charts效果图
+
+1. BalloonMarker
+
+涉及类：BalloonMarker.swift 这个类来自官方Demo，不出意外你一定会修改它，也可以说这个类本身就是做为范本供大家修改的。
+
+导入
+我的项目是">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/7139338-a4b462494795ba0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -123,13 +165,13 @@
 
 
 
-  <link rel="canonical" href="http://gaopengsheng.com/"/>
+  <link rel="canonical" href="http://gaopengsheng.com/2017/08/01/Charts（iOS）/"/>
 
 
 
 
 
-  <title> gaopengsheng.blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Charts（iOS）样式小改 | gaopengsheng.blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,9 +196,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,9 +289,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -281,10 +321,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/08/01/Charts（iOS）/" itemprop="url">
-                  Charts（iOS）样式小改
-                </a>
+                Charts（iOS）样式小改
               
             
           </h1>
@@ -335,9 +372,7 @@
       
 
       
-        
-          
-            <h1 id="chartsios">Charts（iOS）</h1>
+        <h1 id="chartsios">Charts（iOS）</h1>
 <blockquote>
 <p>官方的Demo已经可以满足绝大部分需求啦，但是在面对一些特殊设计的时候，难免要去修改框架内部的代码，下面是几处小小的修改供大家参考，文末附Demo。</p>
 </blockquote>
@@ -374,521 +409,66 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 仿造画gridline的方法，传入绘画环境、Y轴坐标数组</div><div class="line">open func drawZebra(context:CGContext, positions:Array&lt;Any&gt;) &#123;</div><div class="line">        guard let viewPortHandler = self.viewPortHandler</div><div class="line">            else &#123; return &#125;</div><div class="line">        var couples:Array&lt;Array&lt;CGPoint&gt;&gt; = [Array&lt;CGPoint&gt;]()</div><div class="line">        //  将坐标两两分组，(1,2)(3,4)(5,6)...</div><div class="line">        for i in stride(from: 1, to: positions.count-1, by:2)</div><div class="line">        &#123;</div><div class="line">            let couple:Array&lt;Any&gt; = [positions[i],positions[i+1]]</div><div class="line">            couples.append(couple as! [CGPoint])</div><div class="line">        &#125;</div><div class="line">        // 在两根gridline中间画矩形并填充颜色</div><div class="line">        for j in stride(from: 0, to: couples.count, by: 1) &#123;</div><div class="line">            let pots = couples[j]</div><div class="line">            let end = pots.first?.y</div><div class="line">            let start = pots.last?.y</div><div class="line">            let rect :CGRect = CGRect(x:viewPortHandler.contentLeft,y:start!,width:viewPortHandler.contentRight-viewPortHandler.contentLeft,height:end! - start!)</div><div class="line">            // 在Charts项目中的Utils文件夹下的`ChartColorTemplates.swift`文件中有一个利用字符串创建颜色的方法</div><div class="line">            let color = ChartColorTemplates.colorFromString(&quot;#f68000&quot;)</div><div class="line">            context.setFillColor(color.cgColor)</div><div class="line">            context.fill(rect)</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>嗯，就酱，说好的Demo==☞<a href="https://github.com/gpszzzc/ChartsTrial" target="_blank" rel="external">Demo地址</a></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/03/01/CATransform3D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="gaopengsheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gaopengsheng.blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/01/CATransform3D/" itemprop="url">
-                  CATransform3D背后
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T12:04:09+08:00">
-                2017-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          
-            <h1 id="catransform3d">CATransform3D</h1>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> struct CATransform3D</div><div class="line">&#123;</div><div class="line">  CGFloat m11, m12, m13, m14;</div><div class="line">  CGFloat m21, m22, m23, m24;</div><div class="line">  CGFloat m31, m32, m33, m34;</div><div class="line">  CGFloat m41, m42, m43, m44;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>图层的两个属性指定了变换矩阵: <code>transform</code>和<code>sublayer Transform</code><br> <code>transform</code>:是结合<code>anchorPoint</code>的位置来对图层和图层上的子图层进行变化<br> <code>sublayer Transform</code>:是结合<code>anchorPoint</code>的位置来对图层的子图层进行变化,不包括本身.</p>
-</blockquote>
-<h2 id="矩阵知识点补充-切变">矩阵知识点补充 — 切变</h2>
-<div class="figure">
-<img src="http://ol5hpe5hj.bkt.clouddn.com/%E5%9B%BE1_%E5%88%87%E5%8F%98%E7%9F%A9%E9%98%B5.001.jpeg" alt="切变矩阵图解">
-<p class="caption">切变矩阵图解</p>
-</div>
-<blockquote>
-<p>以原点为起始点,设矩形的四个顶点分别为OABC,取特殊点B，坐标(a,b),将B点坐标的迁移转化为矩阵计算:</p>
-<p><span class="math inline">\(\big[\begin{smallmatrix} a+m \\ b\end{smallmatrix} \big]\)</span> = <span class="math inline">\(\big[ \begin{smallmatrix} 1 &amp; m/b \\ 0 &amp; 1 \end{smallmatrix} \bigr]\)</span><span class="math inline">\(\big[\begin{smallmatrix} a \\ b\end{smallmatrix} \big]\)</span></p>
-</blockquote>
-<ul>
-<li>矩阵<span class="math inline">\(\big[\begin{smallmatrix}1 &amp; k \\ 0 &amp; 1 \end{smallmatrix}\big]\)</span>把平面上的点P(x , y)沿 x 轴方向平移 | ky | 个单位</li>
-<li>矩阵<span class="math inline">\(\big[\begin{smallmatrix}1 &amp; 0 \\ k &amp; 1 \end{smallmatrix}\big]\)</span>把平面上的点P(x , y)沿 y 轴方向平移 | ky | 个单位</li>
-</ul>
-<p>一般地,对图中任意一点 (x , y),纵坐标保持不变,横坐标依纵坐标的比例增加, (x , y) –&gt; (x + ky, y) 即,<span class="math inline">\(\big[\begin{smallmatrix} x\\y\end{smallmatrix}\big]\)</span>–&gt;<span class="math inline">\(\big[\begin{smallmatrix} x^\prime\\y^\prime\end{smallmatrix}\big]\)</span> = <span class="math inline">\(\big[\begin{smallmatrix} a+m \\ b\end{smallmatrix} \big]\)</span>,所以<span class="math display">\[M = 
- \left[
- \begin{matrix}
-   1 &amp; k  \\
-  0 &amp; 1  \\
-  \end{matrix}
-  \right]
-为切变矩阵或切变变换矩阵\]</span> 象由矩阵<span class="math inline">\(\big[\begin{smallmatrix} 1 &amp; k \\0 &amp; 1 \end{smallmatrix}\big]\)</span>或者<span class="math inline">\(\big[\begin{smallmatrix} 1 &amp; 0 \\k &amp; 1 \end{smallmatrix}\big]\)</span>确定的变换通常叫做切变变换,对应的矩阵叫做切变变换矩阵.</p>
-<h2 id="矩阵知识点补充-齐次坐标">矩阵知识点补充 — 齐次坐标</h2>
-<p>首先我们要搞明白,为什么三维的坐标系中的图层,需要用四维矩阵来计算图层的变化,这里引入齐次坐标概念.</p>
-<blockquote>
-<p>齐次坐标就是将一个原本是n维的向量用一个n+1维向量来表示。 <a href="https://www.zhihu.com/question/36296104/answer/83199096" target="_blank" rel="external">知乎中陈嘉栋对 “表示三维坐标为什么要建立4*4矩阵?&quot; 的回答</a></p>
-</blockquote>
-<p>最终的结论:</p>
-<blockquote>
-<p>引入齐次坐标是为了结局3*3矩阵无法表示三维空间模型的平移操作,<span class="math inline">\(\Delta x\)</span>,<span class="math inline">\(\Delta y\)</span>,<span class="math inline">\(\Delta z\)</span>分别是 x, y, z轴方向上的平移量</p>
-</blockquote>
-<p><span class="math inline">\(\left [\begin{smallmatrix} x\prime\  \\ y\prime\\z\prime\\1\end{smallmatrix} \right]\)</span> = <span class="math inline">\(\left[ \begin{smallmatrix} 1 &amp; 0 &amp; 0 &amp; \Delta x\ \\ 0 &amp; 1 &amp; 0 &amp; \Delta y\ \\0 &amp; 0 &amp; 1 &amp; \Delta z\ \\0 &amp; 0 &amp; 0 &amp; 1\\ \end{smallmatrix} \right]\)</span><span class="math inline">\(\left [ \begin{smallmatrix} x \\ y \\ z \\1 \\ \end{smallmatrix} \right]\)</span></p>
-<p>等号左侧为转换后的坐标,等号右侧为原始坐标</p>
-<h2 id="cgtransform3d对图层的影响">CGTransform3D对图层的影响</h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center">m</th>
-<th align="center">效果</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><code>m11,m22,m33</code></td>
-<td align="center">三个坐标轴方向上的缩放</td>
-</tr>
-<tr class="even">
-<td align="center"><code>m12,m21</code> </td>
-<td align="center">控制切变,<code>m12</code>y 切变 <code>m21</code> x切变</td>
-</tr>
-<tr class="odd">
-<td align="center"><code>m13,m31</code></td>
-<td align="center">控制旋转</td>
-</tr>
-<tr class="even">
-<td align="center"><code>m41,m42,m43,m44</code></td>
-<td align="center">控制平移</td>
-</tr>
-<tr class="odd">
-<td align="center"><code>m33</code></td>
-<td align="center">若<code>m33&gt;1</code>，图形整体缩小<br>若<code>0&lt;m33&lt;1</code>，图形整体放大<br>若<code>m33&lt;0</code>，发生关于原点对称的等比变换</td>
-</tr>
-<tr class="even">
-<td align="center"><code>m34</code></td>
-<td align="center">透视效果<code>-1/观测者的距离(500-1000)</code>如果要求是透视加旋转，先修改<code>transform的m34属性</code>,再旋转</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/03/01/Using techniques of common tools/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="gaopengsheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gaopengsheng.blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/01/CATransform3D/" rel="next" title="CATransform3D背后">
+                <i class="fa fa-chevron-left"></i> CATransform3D背后
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2017/03/01/Using techniques of common tools/" itemprop="url">
-                  一些小Tips（持续更新）
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T12:04:09+08:00">
-                2017-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="using-techniques-of-common-tools">Using techniques of common tools</h1>
-<div class="figure">
-<img src="http://ol5hpe5hj.bkt.clouddn.com/Photo%2012-02-2017,%2018%2017%2056.jpg">
-
-</div>
-<h2 id="alfred-spotlight-使用指定应用打开文件">Alfred / Spotlight 使用指定应用打开文件</h2>
-<p>当使用Alfred或者是Spotlight搜索文件的时候，希望使用自己指定的程序打开搜索到的文件 - 鼠标移到文件上，按住<code>command</code>键，<code>Alfred</code>会出现<code>Reveal file in Finder</code> - 直接将搜索到的文件拖拽到指定应用程序上打开</p>
-<h2 id="获取网页中的图片">获取网页中的图片</h2>
-<p>在选取Hexo主题时进入了一个主题demo，被背景图片吸引，但是网页下面有个波浪阻碍了我的视线，为了获取完整的背景图先后尝试了<code>chrome fatkun</code>、小乐图库以及浏览器缓存查看大法均告失败，下面介绍成功案例：</p>
-<ul>
-<li>以<code>Chrome</code>为例子，停留在目标图片所在网页，使用快捷键<code>command + option + i</code>打开开发者工具</li>
-<li><p>最上面有一行元素（<code>Elements</code>）、控制台（<code>Console</code>）、资源（<code>Sources</code>）、网络（<code>Network</code>）等等 选择网络 / <code>Network</code>，图片如下 <img src="http://ol5hpe5hj.bkt.clouddn.com/Snip20170301_6.png" alt="| center |"></p></li>
-<li>如上图，<code>command + R</code>刷新页面</li>
-<li><p>喏，目标现身 <img src="http://ol5hpe5hj.bkt.clouddn.com/Snip20170301_8.png" alt="@roger| center"></p></li>
-<li><p>打开新标签页粘贴<code>URL</code> <img src="http://ol5hpe5hj.bkt.clouddn.com/YumenmorBackground.jpg" alt="@no thanks| center"></p></li>
-</ul>
-<h2 id="全键盘操作">全键盘操作</h2>
-<ul>
-<li>光标直接跳转到地址栏、搜索栏<code>command + l</code>,直接跳转到地址栏，按<code>TAB</code>选择其他输入框</li>
-<li>快速打开<code>Finder</code>,<code>command + option + space</code></li>
-</ul>
-<h2 id="将图片切圆角保存">将图片切圆角保存</h2>
-<blockquote>
-<p>为将图片切成圆的作为头像,按照一下步骤操作 准备条件：<a href="https://github.com/facebook/chisel" target="_blank" rel="external">chisel</a></p>
-</blockquote>
-<ul>
-<li>随意创建一个项目，在<code>viewDidLoad</code>中输入一下代码，<code>@&quot;无面者银币_meitu_1.jpg&quot;</code>为事例图片</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];</div><div class="line">    imageView.image = [UIImage imageNamed:@&quot;无面者银币_meitu_1.jpg&quot;];</div><div class="line">    //开始对imageView进行画图</div><div class="line">    UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, NO, [UIScreen mainScreen].scale);</div><div class="line">    //使用贝塞尔曲线画出一个圆形图</div><div class="line">    [[UIBezierPath bezierPathWithRoundedRect:imageView.bounds cornerRadius:imageView.frame.size.width] addClip];</div><div class="line">    [imageView drawRect:imageView.bounds];</div><div class="line">    </div><div class="line">    imageView.image = UIGraphicsGetImageFromCurrentImageContext();</div><div class="line">    //结束画图</div><div class="line">    UIGraphicsEndImageContext();</div><div class="line">    [self.view addSubview:imageView];</div></pre></td></tr></table></figure>
-<ul>
-<li>在结束画图后面打断点</li>
-<li>执行程序，程序停在断点处，<code>command + shift + c</code> 将光标定位在<code>lldb</code>，输入<code>visualize imageView.image</code>,将会弹出对话框，修改名字和保存位置即可 <img src="http://ol5hpe5hj.bkt.clouddn.com/%E5%9C%86%E8%A7%92%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87@2x.png" alt="事例"></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/03/01/crash log/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="gaopengsheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gaopengsheng.blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/01/crash log/" itemprop="url">
-                  crash log symbolicate
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T12:04:09+08:00">
-                2017-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="crash-log">crash log</h1>
-<p>查看<code>.dSYM</code>文件的<code>UUID</code>是否和崩溃日志中的一致<br> dwarfdump –uuid dSYM文件的路径<br> <code>e.g.</code>:<br> dwarfdump –uuid /Users/gaopengsheng/Library/Developer/Xcode/Archives/智慧鸡蛋 2017-3-20 上午9.29.xcarchive/dSYMs/智慧鸡蛋.app.dSYM<br> <code>UUID</code>:每一个可执行程序都有一个build UUID来唯一标识</p>
-<h2 id="使用symbolicatecrash工具符号化崩溃日志">使用symbolicatecrash工具符号化崩溃日志</h2>
-<h3 id="在桌面创建crash文件夹">1. 在桌面创建crash文件夹</h3>
-<h3 id="所需文件">2. 所需文件</h3>
-<p>Xcode -&gt; Window -&gt; Organizer -&gt; Archives 找到上架的包(右键Show in Finder) -&gt; .xcarchive（右键显示包内容）</p>
-<ul>
-<li><code>.app</code>: Products -&gt; Applications</li>
-<li><code>.crash</code>: Apple的拒绝上架邮件中的txt文件直接更改拓展名为.crash</li>
-<li><code>.dSYM</code>: dSYMs</li>
-<li><code>symbolicatecrash</code>:
-<ul>
-<li>打开终端输入命令:<code>find /Applications/Xcode.app -name symbolicatecrash -type f</code></li>
-<li>终端输出:<code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/./symbolicatecrash</code></li>
-<li>将symbolicate拷贝到crash文件夹中 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash /Users/gaopengsheng/Desktop/crash</div></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="将上述所有文件都拷贝到crash文件中">3. 将上述所有文件都拷贝到crash文件中</h3>
-<h3 id="执行symbolicatecrash">4. 执行symbolicatecrash</h3>
-<ul>
-<li>cd 到crash目录</li>
-<li>执行命令<code>./symbolicatecrash .crash文件路径地址 .dSYM文件的路径地址 &gt; 你希望的符号化的crash文件名.crash</code> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e.g.: ./symbolicatecrash /Users/angelseahappiness/Desktop/crash/Control_2014-01-13-111838_Lynns-iPad3.crash /Users/angel/Desktop/crash/Control.app.dSYM &gt; Control_symbol.crash</div></pre></td></tr></table></figure></li>
-</ul></li>
-<li>如果出现<code>Error: &quot;DEVELOPER_DIR&quot; is not defined at ./symbolicatecrash line 60.</code>输入命令<code>export DEVELOPER_DIR=&quot;/Applications/XCode.app/Contents/Developer&quot;</code></li>
-<li><p>继续上上次的命令（可以按两下方向上键，出现上上次执行的命令，然后回车） <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e.g.:./symbolicatecrash /Users/angelseahappiness/Desktop/crash/Control_2014-01-13-111838_Lynns-iPad3.crash /Users/angel/Desktop/crash/Control.app.dSYM &gt; Control_symbol.crash</div></pre></td></tr></table></figure></p></li>
-<li><p>crash文件夹中出现了新的crash文件，即为符号化后的crash文件</p></li>
-</ul>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
           
           </div>
@@ -896,6 +476,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -915,8 +499,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -967,6 +560,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chartsios"><span class="nav-number">1.</span> <span class="nav-text">Charts（iOS）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#balloonmarker"><span class="nav-number">1.1.</span> <span class="nav-text">1. BalloonMarker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导入"><span class="nav-number">1.1.1.</span> <span class="nav-text">导入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改最后一个节点的样式"><span class="nav-number">1.2.</span> <span class="nav-text">2. 修改最后一个节点的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增加背景彩色条"><span class="nav-number">1.3.</span> <span class="nav-text">3. 增加背景彩色条</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在绘制格线的方法中调用自定义绘制方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 在绘制格线的方法中调用自定义绘制方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义绘制斑马纹的方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 自定义绘制斑马纹的方法:</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1079,11 +688,15 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -1122,26 +735,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
