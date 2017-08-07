@@ -419,149 +419,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/03/01/crash log/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="gaopengsheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gaopengsheng.blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/01/crash log/" itemprop="url">
-                  crash log symbolicate
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T12:04:09+08:00">
-                2017-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="crash-log">crash log</h1>
-<p>查看<code>.dSYM</code>文件的<code>UUID</code>是否和崩溃日志中的一致<br> dwarfdump –uuid dSYM文件的路径<br> <code>e.g.</code>:<br> dwarfdump –uuid /Users/gaopengsheng/Library/Developer/Xcode/Archives/智慧鸡蛋 2017-3-20 上午9.29.xcarchive/dSYMs/智慧鸡蛋.app.dSYM<br> <code>UUID</code>:每一个可执行程序都有一个build UUID来唯一标识</p>
-<h2 id="使用symbolicatecrash工具符号化崩溃日志">使用symbolicatecrash工具符号化崩溃日志</h2>
-<h3 id="在桌面创建crash文件夹">1. 在桌面创建crash文件夹</h3>
-<h3 id="所需文件">2. 所需文件</h3>
-<p>Xcode -&gt; Window -&gt; Organizer -&gt; Archives 找到上架的包(右键Show in Finder) -&gt; .xcarchive（右键显示包内容）</p>
-<ul>
-<li><code>.app</code>: Products -&gt; Applications</li>
-<li><code>.crash</code>: Apple的拒绝上架邮件中的txt文件直接更改拓展名为.crash</li>
-<li><code>.dSYM</code>: dSYMs</li>
-<li><code>symbolicatecrash</code>:
-<ul>
-<li>打开终端输入命令:<code>find /Applications/Xcode.app -name symbolicatecrash -type f</code></li>
-<li>终端输出:<code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/./symbolicatecrash</code></li>
-<li>将symbolicate拷贝到crash文件夹中 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash /Users/gaopengsheng/Desktop/crash</div></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="将上述所有文件都拷贝到crash文件中">3. 将上述所有文件都拷贝到crash文件中</h3>
-<h3 id="执行symbolicatecrash">4. 执行symbolicatecrash</h3>
-<ul>
-<li>cd 到crash目录</li>
-<li>执行命令<code>./symbolicatecrash .crash文件路径地址 .dSYM文件的路径地址 &gt; 你希望的符号化的crash文件名.crash</code> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e.g.: ./symbolicatecrash /Users/angelseahappiness/Desktop/crash/Control_2014-01-13-111838_Lynns-iPad3.crash /Users/angel/Desktop/crash/Control.app.dSYM &gt; Control_symbol.crash</div></pre></td></tr></table></figure></li>
-</ul></li>
-<li>如果出现<code>Error: &quot;DEVELOPER_DIR&quot; is not defined at ./symbolicatecrash line 60.</code>输入命令<code>export DEVELOPER_DIR=&quot;/Applications/XCode.app/Contents/Developer&quot;</code></li>
-<li><p>继续上上次的命令（可以按两下方向上键，出现上上次执行的命令，然后回车） <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e.g.:./symbolicatecrash /Users/angelseahappiness/Desktop/crash/Control_2014-01-13-111838_Lynns-iPad3.crash /Users/angel/Desktop/crash/Control.app.dSYM &gt; Control_symbol.crash</div></pre></td></tr></table></figure></p></li>
-<li><p>crash文件夹中出现了新的crash文件，即为符号化后的crash文件</p></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/03/01/CATransform3D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -860,6 +717,149 @@
 <ul>
 <li>在结束画图后面打断点</li>
 <li>执行程序，程序停在断点处，<code>command + shift + c</code> 将光标定位在<code>lldb</code>，输入<code>visualize imageView.image</code>,将会弹出对话框，修改名字和保存位置即可 <img src="http://ol5hpe5hj.bkt.clouddn.com/%E5%9C%86%E8%A7%92%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87@2x.png" alt="事例"></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/03/01/crash log/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gaopengsheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gaopengsheng.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/01/crash log/" itemprop="url">
+                  crash log symbolicate
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T12:04:09+08:00">
+                2017-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="crash-log">crash log</h1>
+<p>查看<code>.dSYM</code>文件的<code>UUID</code>是否和崩溃日志中的一致<br> dwarfdump –uuid dSYM文件的路径<br> <code>e.g.</code>:<br> dwarfdump –uuid /Users/gaopengsheng/Library/Developer/Xcode/Archives/智慧鸡蛋 2017-3-20 上午9.29.xcarchive/dSYMs/智慧鸡蛋.app.dSYM<br> <code>UUID</code>:每一个可执行程序都有一个build UUID来唯一标识</p>
+<h2 id="使用symbolicatecrash工具符号化崩溃日志">使用symbolicatecrash工具符号化崩溃日志</h2>
+<h3 id="在桌面创建crash文件夹">1. 在桌面创建crash文件夹</h3>
+<h3 id="所需文件">2. 所需文件</h3>
+<p>Xcode -&gt; Window -&gt; Organizer -&gt; Archives 找到上架的包(右键Show in Finder) -&gt; .xcarchive（右键显示包内容）</p>
+<ul>
+<li><code>.app</code>: Products -&gt; Applications</li>
+<li><code>.crash</code>: Apple的拒绝上架邮件中的txt文件直接更改拓展名为.crash</li>
+<li><code>.dSYM</code>: dSYMs</li>
+<li><code>symbolicatecrash</code>:
+<ul>
+<li>打开终端输入命令:<code>find /Applications/Xcode.app -name symbolicatecrash -type f</code></li>
+<li>终端输出:<code>/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/./symbolicatecrash</code></li>
+<li>将symbolicate拷贝到crash文件夹中 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/PrivateFrameworks/DTDeviceKitBase.framework/Versions/A/Resources/symbolicatecrash /Users/gaopengsheng/Desktop/crash</div></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="将上述所有文件都拷贝到crash文件中">3. 将上述所有文件都拷贝到crash文件中</h3>
+<h3 id="执行symbolicatecrash">4. 执行symbolicatecrash</h3>
+<ul>
+<li>cd 到crash目录</li>
+<li>执行命令<code>./symbolicatecrash .crash文件路径地址 .dSYM文件的路径地址 &gt; 你希望的符号化的crash文件名.crash</code> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e.g.: ./symbolicatecrash /Users/angelseahappiness/Desktop/crash/Control_2014-01-13-111838_Lynns-iPad3.crash /Users/angel/Desktop/crash/Control.app.dSYM &gt; Control_symbol.crash</div></pre></td></tr></table></figure></li>
+</ul></li>
+<li>如果出现<code>Error: &quot;DEVELOPER_DIR&quot; is not defined at ./symbolicatecrash line 60.</code>输入命令<code>export DEVELOPER_DIR=&quot;/Applications/XCode.app/Contents/Developer&quot;</code></li>
+<li><p>继续上上次的命令（可以按两下方向上键，出现上上次执行的命令，然后回车） <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">e.g.:./symbolicatecrash /Users/angelseahappiness/Desktop/crash/Control_2014-01-13-111838_Lynns-iPad3.crash /Users/angel/Desktop/crash/Control.app.dSYM &gt; Control_symbol.crash</div></pre></td></tr></table></figure></p></li>
+<li><p>crash文件夹中出现了新的crash文件，即为符号化后的crash文件</p></li>
 </ul>
 
           
