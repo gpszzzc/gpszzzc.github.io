@@ -1,0 +1,736 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="腾讯云Ubuntu系统JDK、Mysql、Tomcat安装
+
+前几天上车购入了腾讯云，操作系统为 Ubuntu 16.04.1 LTS，记录一下安装最新版 JDK-10、Mysql-5.7、Tomcat-9 的过程。因为是第一次在服务器上进行这类操作，有些具体操作与网上一些文章也颇有出入，如果存在不恰当的做法希望大家多多指正。
+
+1. JDK
+方案 A： 将JDK直接下载到服务器中，实际操作后是失">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CATransform3D背后">
+<meta property="og:url" content="http://gaopengsheng.com/2017/03/01/腾讯云Ubuntu系统安装JDK、Mysql、Tomcat/index.html">
+<meta property="og:site_name" content="gaopengsheng.blog">
+<meta property="og:description" content="腾讯云Ubuntu系统JDK、Mysql、Tomcat安装
+
+前几天上车购入了腾讯云，操作系统为 Ubuntu 16.04.1 LTS，记录一下安装最新版 JDK-10、Mysql-5.7、Tomcat-9 的过程。因为是第一次在服务器上进行这类操作，有些具体操作与网上一些文章也颇有出入，如果存在不恰当的做法希望大家多多指正。
+
+1. JDK
+方案 A： 将JDK直接下载到服务器中，实际操作后是失">
+<meta property="og:image" content="http://p68yahrwk.bkt.clouddn.com/Tomcat_success.png">
+<meta property="og:updated_time" content="2018-03-27T12:13:50.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CATransform3D背后">
+<meta name="twitter:description" content="腾讯云Ubuntu系统JDK、Mysql、Tomcat安装
+
+前几天上车购入了腾讯云，操作系统为 Ubuntu 16.04.1 LTS，记录一下安装最新版 JDK-10、Mysql-5.7、Tomcat-9 的过程。因为是第一次在服务器上进行这类操作，有些具体操作与网上一些文章也颇有出入，如果存在不恰当的做法希望大家多多指正。
+
+1. JDK
+方案 A： 将JDK直接下载到服务器中，实际操作后是失">
+<meta name="twitter:image" content="http://p68yahrwk.bkt.clouddn.com/Tomcat_success.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://gaopengsheng.com/2017/03/01/腾讯云Ubuntu系统安装JDK、Mysql、Tomcat/"/>
+
+
+
+
+
+  <title> CATransform3D背后 | gaopengsheng.blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">gaopengsheng.blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://gaopengsheng.com/2017/03/01/腾讯云Ubuntu系统安装JDK、Mysql、Tomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gaopengsheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gaopengsheng.blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CATransform3D背后
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-01T12:04:09+08:00">
+                2017-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="腾讯云ubuntu系统jdkmysqltomcat安装">腾讯云Ubuntu系统JDK、Mysql、Tomcat安装</h1>
+<blockquote>
+<p>前几天上车购入了腾讯云，操作系统为 <code>Ubuntu 16.04.1 LTS</code>，记录一下安装最新版 <code>JDK-10、Mysql-5.7、Tomcat-9</code> 的过程。因为是第一次在服务器上进行这类操作，有些具体操作与网上一些文章也颇有出入，如果存在不恰当的做法希望大家多多指正。</p>
+</blockquote>
+<h2 id="jdk">1. JDK</h2>
+<h3 id="方案-a-将jdk直接下载到服务器中实际操作后是失败的可直接跳到方案-b">方案 <code>A</code>： 将JDK直接下载到服务器中，实际操作后是失败的，可直接跳到方案 <code>B</code></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget http://download.oracle.com/otn-pub/java/jdk/10+46/76eac37278c24557a3c4199677f19b62/jdk-10_linux-x64_bin.tar.gz</div><div class="line">// 下载结束后尝试解压</div><div class="line">$ tar -zxvf jdk-10_linux-x64_bin.tar.gz</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">提示以下信息： </div><div class="line">　　gzip： stdin： not in gzip format </div><div class="line">　　tar： Child returned status 1 </div><div class="line">　　tar： Error is not recoverable： exiting now</div></pre></td></tr></table></figure>
+<p>原因：这个压缩包没有用gzip格式压缩，所以不用加z指令 解决方法：使用 <code>$ tar -xvf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">-z：有gzip属性的</div><div class="line">-j：有bz2属性的</div><div class="line">-Z：有compress属性的</div><div class="line">-v：显示所有过程</div><div class="line">-O：将文件解开到标准输出</div><div class="line">-f: 使用档案名字，切记，这个参数是最后一个参数，后面只能接档案名。</div><div class="line"></div><div class="line">1、*.tar 用 tar –xvf 解压</div><div class="line">2、*.gz 用 gzip -d或者gunzip 解压</div><div class="line">3、*.tar.gz和*.tgz 用 tar –xzf 解压</div><div class="line">4、*.bz2 用 bzip2 -d或者用bunzip2 解压</div><div class="line">5、*.tar.bz2用tar –xjf 解压</div><div class="line">6、*.Z 用 uncompress 解压</div><div class="line">7、*.tar.Z 用tar –xZf 解压</div><div class="line">8、*.rar 用 unrar e解压</div><div class="line">9、*.zip 用 unzip 解压</div></pre></td></tr></table></figure>
+<p>问题实际上没有被解决，方案 <code>A</code> 为何没有奏效我并不清楚是什么原因，留下来以后慢慢探索。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ du -h jdk-10_linux-x64_bin.tar.gz.1</div><div class="line">8.0K	jdk-10_linux-x64_bin.tar.gz.1</div></pre></td></tr></table></figure>
+<p>此 <code>JDK</code> 只有区区 <code>8K</code>，显然不对，于是选择方案 <code>B</code></p>
+<h3 id="方案-b在本地下载-jdk然后拷贝到服务器">方案 <code>B</code>：在本地下载 <code>JDK</code>,然后拷贝到服务器</h3>
+<p>开始的时候想和使用 <code>wget</code> 一样直接拷贝到 <code>/usr/java</code> 文件夹下面，但是发现没有权限这么做，这里涉及到 <code>linux</code> 用户和用户群的知识，查看文件或者文件夹是否有操作权限请使用 <code>$ ls -l</code> 命令查看详情，用户目录肯定是有权限访问的，所以将 <code>/home/ubuntu</code> 作为拷贝的目标文件夹。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo scp /Users/gaopengsheng/Downloads/jdk-10_linux-x64_bin.tar.gz ubuntu@140.143.246.244:/home/ubuntu</div></pre></td></tr></table></figure>
+<p>之后解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// /usr/java/jdk 是事先创建好的文件夹，jdk-10_linux-x64_bin.tar.gz 是下载的压缩包文件</div><div class="line">$ sudo tar -xzvf jdk-10_linux-x64_bin.tar.gz -C /usr/java/jdk</div></pre></td></tr></table></figure>
+<p>配置环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">// 1. 修改</div><div class="line">$ vim ~/.bashrc</div><div class="line">// 在最后面插入，重点在于JAVA_HOME需要配置到 jdk 实际存放的位置，其余四条都是一样的</div><div class="line">export JAVA_HOME=/usr/java/jdk/jdk-10</div><div class="line">export JAVA_BIN=$JAVA_HOME/bin</div><div class="line">export JAVA_LIB=$JAVA_HOME/lib</div><div class="line">export CLASSPATH=.:$JAVA_LIB/tools.jar:$JAVA_LIB/dt.jar</div><div class="line">export PATH=$JAVA_BIN:$PATH</div><div class="line">// ：wq保存后，执行</div><div class="line">$ . ~/.bashrc</div><div class="line">$ java -version // 试验是否安装成功</div><div class="line">java version &quot;10&quot; 2018-03-20</div><div class="line">Java(TM) SE Runtime Environment 18.3 (build 10+46)</div><div class="line">Java HotSpot(TM) 64-Bit Server VM 18.3 (build 10+46, mixed mode)</div></pre></td></tr></table></figure>
+<p>至此JDK完成安装。</p>
+<h2 id="mysql">2. Mysql</h2>
+<h3 id="下载安装">下载安装</h3>
+<p>因为我使用的是 <code>ubuntu</code> 系统，所以支持<a href="https://dev.mysql.com/downloads/repo/apt/" target="_blank" rel="external">apt 的方式安装 Mysql</a>。按照<a href="https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/" target="_blank" rel="external">文档</a>，先下载 <code>.deb</code> 文件，然后拷贝到服务器上，即可完成安装。</p>
+<h3 id="首先测试本地访问数据库">首先测试本地访问数据库</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 1. 查看数据库的状态，如果未开启请先开启</div><div class="line">$ sudo service mysql status </div><div class="line">// 2. 然后访问本地数据库</div><div class="line">$ mysql -u root -p</div></pre></td></tr></table></figure>
+<h3 id="开启mysql远程访问">开启Mysql远程访问</h3>
+<h4 id="修改用户表">1. 修改用户表</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">// 1. 打开mysql数据库</div><div class="line">mysql&gt; use mysql</div><div class="line"></div><div class="line">Reading table information for completion of table and column names</div><div class="line">You can turn off this feature to get a quicker startup with -A</div><div class="line"></div><div class="line">Database changed</div><div class="line"></div><div class="line">// 2. 查看用户表 user</div><div class="line">mysql&gt; SELECT host，user FROM user;</div><div class="line">+---------------+-----------+</div><div class="line">| user          | host      |</div><div class="line">+---------------+-----------+</div><div class="line">| root          | localhost |</div><div class="line">| mysql.session | localhost |</div><div class="line">| mysql.sys     | localhost |</div><div class="line">+---------------+-----------+</div><div class="line">3 rows in set (0.00 sec)</div><div class="line"></div><div class="line">// 3. 修改：host 字段表示登录的主机，其值可以用IP，也可用主机名，如要要所有ip都可以访问数据库请使用&apos;%&apos;,可以选择创建新用户，或者选择修改root用户的访问权限，修改完成后所有主机均可以使用root用户访问mysql</div><div class="line">mysql&gt; UPDATE user SET host = &apos;%&apos; WHERE user = &apos;root&apos;;</div><div class="line"></div><div class="line">// 4. 修改字段之后重复第2步操作查看user表，结果如下</div><div class="line">+---------------+-----------+</div><div class="line">| user          | host      |</div><div class="line">+---------------+-----------+</div><div class="line">| root          | %         |</div><div class="line">| mysql.session | localhost |</div><div class="line">| mysql.sys     | localhost |</div><div class="line">+---------------+-----------+</div><div class="line">3 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
+<h4 id="配置防火墙打开-3306-端口">2. 配置防火墙打开 <code>3306</code> 端口</h4>
+<p><a href="https://www.linuxidc.com/Linux/2016-12/138259.htm" target="_blank" rel="external">ubuntu防火墙安装与配置</a></p>
+<h4 id="mysql监听端口">3. Mysql监听端口</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">// 1. 查看3306端口状态</div><div class="line">$ netstat -an | grep 3306</div><div class="line">// 2. 正确结果，如果结果中绑定的结果不是0 0.0.0.0:3306， 而是127.0.0.1：3306 需要修改Mysql配置文件</div><div class="line">tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN </div><div class="line">// 3. 查找配置文件，在/etc文件夹下并以.cnf 结尾的文件</div><div class="line">$ sudo find /etc -name *.cnf</div><div class="line">/etc/alternatives/my.cnf</div><div class="line">/etc/mysql/conf.d/mysql.cnf</div><div class="line">/etc/mysql/my.cnf</div><div class="line">/etc/mysql/mysql.cnf</div><div class="line">/etc/mysql/mysql.conf.d/mysqld.cnf</div><div class="line">/etc/ssl/openssl.cnf</div><div class="line"></div><div class="line">// 4. 尝试用vim打开每个文件尝试哪个文件绑定了监听IP,即具有 bind-address 字段，尝试结果为 /etc/mysql/mysql.conf.d/mysqld.cnf 为ubuntu环境下的Mysql 配置文件</div><div class="line">$ vim /etc/mysql/mysql.conf.d/mysqld.cnf</div><div class="line"></div><div class="line">// 5. 修改ip</div><div class="line">bind-address    = 0.0.0.0</div><div class="line"></div><div class="line">// 6. 保存退出，注意mysqld.cnf为只读文件所以使用如下命令保存退出，也可以使用sudo打开后再编辑</div><div class="line">:w !sudo tee %</div><div class="line"></div><div class="line">// 7. 再次查看3306端口状态，并尝试连接服务器的数据库，除了使用工具Navicat以外还可以使用终端命令</div><div class="line">$ mysql -h 服务器外网ip -P 3306 -u root -p</div></pre></td></tr></table></figure>
+<p>至此 <code>Mysql</code> 就安装完毕了。</p>
+<h2 id="tomcat">3. Tomcat</h2>
+<h3 id="下载安装-1">下载安装</h3>
+<p>首先登录<a href="https://tomcat.apache.org/download-90.cgi" target="_blank" rel="external"><code>Tomcat</code> 官网</a>，选择 <code>tar.gz</code> 压缩格式的二进制包，这里可以使用 <code>wget</code>命令直接下载到服务器上，然后进行解压，具体步骤见 <code>JDK</code> 安装方案 <code>A</code>。 ### 环境变量配置 首先阅读根目录下的 <code>RUNNING.txt</code> 文件，相当于 <code>README</code> 。里面有对如何配置环境变量和如果启动和关闭 <code>Tomcat</code> 有详细的介绍。按照文档的指示我们需要在 <code>CATALINA_BASE/bin</code> 或者 <code>CATALINA_HOME/bin</code> 文件下创建一个名为 <code>setenv.sh</code> 的文件，具体文档如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(3.4) Using the &quot;setenv&quot; script (optional, recommended)</div><div class="line"> Apart from CATALINA_HOME and CATALINA_BASE, all environment variables can</div><div class="line"> be specified in the &quot;setenv&quot; script. The script is placed either into</div><div class="line"> CATALINA_BASE/bin or into CATALINA_HOME/bin directory and is named</div><div class="line"> setenv.bat (on Windows) or setenv.sh (on *nix). The file has to be</div><div class="line"> readable.</div></pre></td></tr></table></figure>
+<h4 id="先取得-bin-文件夹的操作权限">1. 先取得 <code>bin</code> 文件夹的操作权限</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo chmod 777 -R /usr/java/tomcat/apache-tomcat-9.0.6/bin</div></pre></td></tr></table></figure>
+<h4 id="然后创建-setenv.sh-文件并编辑">2. 然后创建 <code>setenv.sh</code> 文件并编辑</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 1. 创建 setenv.sh 文件</div><div class="line">/usr/java/tomcat/apache-tomcat-9.0.6/bin$ vim setenv.sh</div><div class="line">// 2. 配置 JAVA_HOME 后保存退出</div><div class="line">JAVA_HOME=/usr/java/jdk/jdk-10</div><div class="line">// 3. 执行 startup.sh</div><div class="line">$ sudo ./startup.sh</div><div class="line">Using CATALINA_BASE:   /usr/java/tomcat/apache-tomcat-9.0.6</div><div class="line">Using CATALINA_HOME:   /usr/java/tomcat/apache-tomcat-9.0.6</div><div class="line">Using CATALINA_TMPDIR: /usr/java/tomcat/apache-tomcat-9.0.6/temp</div><div class="line">Using JRE_HOME:        /usr/java/jdk/jdk-10</div><div class="line">Using CLASSPATH:       /usr/java/tomcat/apache-tomcat-9.0.6/bin/bootstrap.jar:/usr/java/tomcat/apache-tomcat-9.0.6/bin/tomcat-juli.jar</div><div class="line">Tomcat started.</div></pre></td></tr></table></figure>
+<h4 id="防火墙打开8080端口">3. 防火墙打开8080端口</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ufw allow 8080</div></pre></td></tr></table></figure>
+<p>然后就可以远程访问服务器的8080端口来访问 <code>Tomcat</code> 的管理页面了。 <img src="http://p68yahrwk.bkt.clouddn.com/Tomcat_success.png" alt="Tomcat安装成功"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/01/Using techniques of common tools/" rel="prev" title="一些小Tips（持续更新）">
+                一些小Tips（持续更新） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="gaopengsheng" />
+          <p class="site-author-name" itemprop="name">gaopengsheng</p>
+           
+              <p class="site-description motion-element" itemprop="description">Over shoes,over boots.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#腾讯云ubuntu系统jdkmysqltomcat安装"><span class="nav-number">1.</span> <span class="nav-text">腾讯云Ubuntu系统JDK、Mysql、Tomcat安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jdk"><span class="nav-number">1.1.</span> <span class="nav-text">1. JDK</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案-a-将jdk直接下载到服务器中实际操作后是失败的可直接跳到方案-b"><span class="nav-number">1.1.1.</span> <span class="nav-text">方案 A： 将JDK直接下载到服务器中，实际操作后是失败的，可直接跳到方案 B</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案-b在本地下载-jdk然后拷贝到服务器"><span class="nav-number">1.1.2.</span> <span class="nav-text">方案 B：在本地下载 JDK,然后拷贝到服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql"><span class="nav-number">1.2.</span> <span class="nav-text">2. Mysql</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载安装"><span class="nav-number">1.2.1.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首先测试本地访问数据库"><span class="nav-number">1.2.2.</span> <span class="nav-text">首先测试本地访问数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启mysql远程访问"><span class="nav-number">1.2.3.</span> <span class="nav-text">开启Mysql远程访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改用户表"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">1. 修改用户表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置防火墙打开-3306-端口"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2. 配置防火墙打开 3306 端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mysql监听端口"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3. Mysql监听端口</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tomcat"><span class="nav-number">1.3.</span> <span class="nav-text">3. Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载安装-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">下载安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先取得-bin-文件夹的操作权限"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">1. 先取得 bin 文件夹的操作权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#然后创建-setenv.sh-文件并编辑"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">2. 然后创建 setenv.sh 文件并编辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防火墙打开8080端口"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">3. 防火墙打开8080端口</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gaopengsheng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
